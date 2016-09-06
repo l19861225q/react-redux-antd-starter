@@ -1,0 +1,59 @@
+{
+  "name": "react-redux-antd-starter",
+  "version": "1.0.0",
+  "description": "React + Redux + ant.design Starter",
+  "bin": {
+    "rimraf": "./node_modules/.bin/rimraf"
+  },
+  "scripts": {
+    "start": "export NODE_ENV=development && node server.js",
+    "build": "npm run remove:build && NODE_ENV=production && webpack -p --config webpack.config.pro.js --progress",
+    "remove:build": "rimraf ./dist"
+  },
+  "keywords": ["react", "redux", "antd", "ant.design", "starter"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/l19861225q/react-redux-antd-starter.git"
+  },
+  "author": "LQ <l19861225q@gmail.com> (http://l19861225q.github.io/)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/l19861225q/react-redux-antd-starter/issues",
+    "email": "l19861225q@gmail.com"
+  },
+  "devDependencies": {
+    "assign-deep": "^0.4.5",
+    "babel-core": "^6.14.0",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-antd": "^0.5.1",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "css-loader": "^0.25.0",
+    "cssnano": "^3.7.4",
+    "eslint": "^3.4.0",
+    "eslint-config-standard": "^6.0.0",
+    "eslint-plugin-html": "^1.5.2",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-react": "^6.2.0",
+    "eslint-plugin-standard": "^2.0.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "imagemin-webpack-plugin": "^1.0.8",
+    "img-loader": "^1.3.1",
+    "optimize-css-assets-webpack-plugin": "^1.3.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.1"
+  },
+  "dependencies": {
+    "antd": "^1.11.0",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0"
+  }
+}

@@ -1,2 +1,1 @@
-# react-redux-antd-starter
-React + Redux + ant.design Starter
+# React + Redux + ant.design Starter
