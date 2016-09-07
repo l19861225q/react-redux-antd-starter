@@ -10,7 +10,13 @@
     "build": "npm run remove:build && NODE_ENV=production && webpack -p --config webpack.config.pro.js --progress",
     "remove:build": "rimraf ./dist"
   },
-  "keywords": ["react", "redux", "antd", "ant.design", "starter"],
+  "keywords": [
+    "react",
+    "redux",
+    "antd",
+    "ant.design",
+    "starter"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/l19861225q/react-redux-antd-starter.git"
@@ -44,6 +50,7 @@
     "imagemin-webpack-plugin": "^1.0.8",
     "img-loader": "^1.3.1",
     "optimize-css-assets-webpack-plugin": "^1.3.0",
+    "sass-loader": "^4.0.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",

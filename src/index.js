@@ -14,7 +14,7 @@ import { render } from 'react-dom'
 import { Button } from 'antd'
 
 render(
-  <div id="foo">
+  <div>
     <span>Hello, world!</span>
     <Button onClick={e => alert("hi!")}>Click Me</Button>
   </div>,

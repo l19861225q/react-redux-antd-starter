@@ -49,6 +49,12 @@ module.exports = {
         test: /\.css$/i,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
       },
+      // For component *.scss
+      {
+        test: /\.scss$/i,
+        exclude: /node_modules/,
+        loader: ExtractTextPlugin.extract('style', 'css!sass'),
+      },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
@@ -57,5 +63,8 @@ module.exports = {
         ],
       },
     ],
+  },
+  sassLoader: {
+    data: '@import "~bemify/sass/bemify";',
   },
 }
