@@ -10,6 +10,7 @@
 const path = require('path')
 
 // Webpack
+const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 // Sperate the 3rd libs
@@ -67,4 +68,11 @@ module.exports = {
   sassLoader: {
     data: '@import "~bemify/sass/bemify";',
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development'),
+      __DEV__: process.env.NODE_ENV === 'development',
+      __PRO__: process.env.NODE_ENV === 'production',
+    }),
+  ],
 }

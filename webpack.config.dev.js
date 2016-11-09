@@ -40,13 +40,9 @@ const config = assign({}, baseConfig, {
     publicPath: '/',
   },
   plugins: [
+    ...baseConfig.plugins,
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
-      __DEV__: process.env.NODE_ENV === 'development',
-      __PRO__: process.env.NODE_ENV === 'production',
-    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors',
       filename: 'vendors.bundle.js',
