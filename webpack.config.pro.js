@@ -35,11 +35,7 @@ const config = assign({}, baseConfig, {
     publicPath: '/',
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
-      __DEV__: process.env.NODE_ENV === 'development',
-      __PRO__: process.env.NODE_ENV === 'production',
-    }),
+    ...baseConfig.plugins,
     // Use this for no-cache
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({

@@ -1,5 +1,8 @@
 .DS_store
 *.log
-bundle/
-dist/
-node_modules/
+node_modules
+dist
+bundle
+coverage
+.idea/
+.yarn-cache
