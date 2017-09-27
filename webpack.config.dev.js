@@ -6,49 +6,67 @@
  * @Email:  112486391@qq.com
  */
 
+require('dotenv').config()
+const { HOST, PORT_DEV } = process.env
+
 // Core
 const path = require('path')
 
 // Webpack
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlPlugin = require('html-webpack-plugin')
 
 // Libs
-const assign = require('assign-deep')
+const webpackMerge = require('webpack-merge')
 
 // Base config
 const baseConfig = require('./webpack.config.base.js')
 
-// Server config
-const serverConfig = require('./config.js')
-
-// Env
-const env = process.env.NODE_ENV
-
-const config = assign({}, baseConfig, {
-  devtool: '#eval',
+const config = webpackMerge({}, baseConfig, {
+  devtool: 'eval',
+  watch: true,
   entry: {
     index: [
       'webpack/hot/dev-server',
-      `webpack-dev-server/client?http://${serverConfig.host}:${serverConfig.port[env]}`,
-      path.resolve(__dirname, 'src/index.js'),
-    ],
+      `webpack-dev-server/client?http://${HOST}:${PORT_DEV}`,
+      path.resolve(__dirname, 'src/index.js')
+    ]
   },
   output: {
     path: path.resolve(__dirname, 'bundle'),
-    filename: '[name].bundle.js',
-    publicPath: '/',
+    filename: '[name]-bundle.js',
+    chunkFilename: '[name]-chunk-bundle.js',
+    publicPath: '/'
+  },
+  module: {
+    rules: [
+      // 处理 s?css
+      {
+        test: /\.s?css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader?sourceMap', 'postcss-loader?sourceMap', 'sass-loader?sourceMap'],
+          // 替换 css 中的资源引用路径指向 /public/
+          // publicPath: '../../'
+        })
+      },
+    ]
   },
   plugins: [
     ...baseConfig.plugins,
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors',
       filename: 'vendors.bundle.js',
     }),
     new ExtractTextPlugin('style.css'),
-  ],
+    new HtmlPlugin({
+      filename: 'index.html',
+      template: './index.hbs'
+    })
+  ]
 })
 
 module.exports = config

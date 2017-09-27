@@ -1,4 +1,4 @@
-# React + Redux + ant.design Starter
+# React + Redux + Ant-Design Starter
 
 ## NPM Scripts
 - development `npm start`

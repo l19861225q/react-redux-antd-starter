@@ -6,17 +6,17 @@
  * @Email:  112486391@qq.com
  */
 
+require('dotenv').config()
+const { NODE_ENV, HOST, PORT_DEV, PORT_PROD } = process.env
+
 // Webpack
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
-// Server config
-const serverConfig = require('./config.js')
-
 // Env
-const env = process.env.NODE_ENV
+const env = NODE_ENV
 const isDev = env === 'development'
-const port = serverConfig.port[env]
+const port = isDev ? PORT_DEV : PORT_PROD
 
 const webpackConfig = isDev
   ? require('./webpack.config.dev.js')
@@ -32,13 +32,13 @@ const serverOptions = {
     // Hide modules output
     modules: false,
     // Print the error details when webpack got some error
-    errorDetails: true,
-  },
+    errorDetails: true
+  }
 }
 
 const server = new WebpackDevServer(webpack(webpackConfig), serverOptions)
 
-server.listen(port, serverConfig.host, err => {
+server.listen(port, HOST, err => {
   if (err) {
     console.error(err)
   } else {
